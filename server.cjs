@@ -23,12 +23,12 @@ app.use(express.json())
 //Server Start
 app.use("/api", apiRouter)
 app.use("/auth", require("./auth/index.cjs"))
-app.use(express.static(path.join(__dirname, "./client/dist")))
+app.use("/", express.static(path.join(__dirname, "./client/dist")))
 
 //Root Route
-app.get("/", async (req, res, next) => {
-  res.send("This is the route ")
-})
+// app.get("/", async (req, res, next) => {
+//   res.send("This is the route ")
+// })
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`)
