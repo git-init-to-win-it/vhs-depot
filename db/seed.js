@@ -35,70 +35,60 @@ const createUsersMoviesAndCart = async() => {
     }
   });
 
+  const cart1 = await prisma.cart.create({
+    data: {
+      userid: 1
+    }
+  });
+  const cart2 = await prisma.cart.create({
+    data: {
+      userid: 2
+    }
+  });
+  const cart3 = await prisma.cart.create({
+    data: {
+      userid: 3
+    }
+  });
+
   const movie1 = await prisma.movies.create({
     data: {
       title: `Friday the 13th`,
       genre: `Horrer`,
-      description: `Some teens go camping and have the best time ever, a summer they won't forget!`
+      description: `Some teens go camping and have the best time ever, a summer they won't forget!`,
+      cartid: 3
     }
   });
   const movie2 = await prisma.movies.create({
     data: {
       title: `Jurrasic Park`,
       genre: `Action`,
-      description: `Ever want to see a trex? Now's your chance!`
+      description: `Ever want to see a trex? Now's your chance!`,
+      cartid: 3
     }
   });
   const movie3 = await prisma.movies.create({
     data: {
       title: `Star Wars`,
       genre: `Sci-Fi`,
-      description: `You'll never guess who Luke's dad is!`
+      description: `You'll never guess who Luke's dad is!`,
+      cartid: 2
     }
   });
   const movie4 = await prisma.movies.create({
     data: {
       title: `ET`,
       genre: `Sci-Fi`,
-      description: `The poor little guy just wants to go home!`
+      description: `The poor little guy just wants to go home!`,
+      cartid: 2
     }
   });
   const movie5 = await prisma.movies.create({
     data: {
       title: `Transformers`,
       genre: `Action`,
-      description: `Some giant robots fight, it's pretty dope`
-    }
-  });
-
-  const cart1 = await prisma.cart.create({
-    data: {
-      userid: 1,
-      movieid: 2
-    }
-  });
-  const cart2 = await prisma.cart.create({
-    data: {
-      userid: 1,
-      movieid: 3
-    }
-  });
-  const cart3 = await prisma.cart.create({
-    data: {
-      userid: 2,
-      movieid: 1
-    }
-  });
-  const cart4 = await prisma.cart.create({
-    data: {
-      userid: 3,
-      movieid: 4
-    }
-  });
-  const cart5 = await prisma.cart.create({
-    data: {
-      userid: 3,
-      movieid: 5
+      description: `Some giant robots fight, it's pretty dope`,
+      cartid: 1
     }
   });
  
