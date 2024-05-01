@@ -9,6 +9,8 @@ const createUsersMoviesAndCart = async() => {
   const hashedPass3 = await bcrypt.hash(`nunya3`, saltRounds);
   const hashedPass4 = await bcrypt.hash(`nunya4`, saltRounds);
 
+  console.log(`MAKING TABLES`)
+
   const user1 = await prisma.users.create({
     data:{
       username: `uno`,
@@ -92,6 +94,8 @@ const createUsersMoviesAndCart = async() => {
     }
   });
  
+  console.log(`TABLES MADE`)
+
 };
 
 createUsersMoviesAndCart();
