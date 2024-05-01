@@ -7,10 +7,13 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+
     "start": "node ./db/seed.js && node server.cjs"
+    "seed": "npx prisma migrate reset && nodemon ./db/seed.js",
+
   },
   "dependencies": {
-    "@prisma/client": "^5.13.0",
+    "@prisma/client": "^5.12.1",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -19,7 +22,6 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
     "pg": "^8.11.5",
-    "prisma": "^5.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0"
@@ -32,10 +34,12 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "npm-run-all": "^4.1.5",
+    "prisma": "^5.12.1",
     "vite": "^5.2.0"
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": "server.js",
+  "main": "server.cjs",
   "keywords": [],
   "author": "",
   "license": "ISC"
