@@ -7,8 +7,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start": "node ./db/seed.js && node server.cjs",
-    "seed": "npx prisma migrate reset && nodemon ./db/seed.js",
+    "start": "nodemon ./db/seed.js && node server.cjs",
+    "seed": "nodemon ./db/seed.js"
 
   },
   "dependencies": {
