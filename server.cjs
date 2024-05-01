@@ -1,7 +1,7 @@
 require("dotenv").config()
 const express = require("express")
 const app = express()
-const PORT = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 const apiRouter = require("./api/index.cjs")
 
 //Middleware
@@ -29,7 +29,7 @@ app.get("/", async (req, res, next) => {
   res.send("This is the route ")
 })
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`)
-  console.log("listening on PORT:" + process.env.PORT)
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`)
+  console.log("listening on port:" + process.env.port)
 })
