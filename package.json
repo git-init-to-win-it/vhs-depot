@@ -7,8 +7,10 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+
+    "start": "node ./db/seed.js && node server.cjs"
     "seed": "npx prisma migrate reset && nodemon ./db/seed.js",
-    "start": "npx prisma migrate reset --force && node ./db/seed.js && node server.cjs"
+
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
