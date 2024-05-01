@@ -8,7 +8,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "seed": "npx prisma migrate reset && nodemon ./db/seed.js",
-    "start": "npx prisma migrate reset && node ./db/seed.js && node server.cjs"
+    "start": "npx prisma migrate reset --auto-approve && node ./db/seed.js && node server.cjs"
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
