@@ -7,11 +7,11 @@ import MovieDetails from "./pages/MovieDetails"
 import Login from "./pages/authPages/Login"
 import Register from "./pages/authPages/Register"
 import Cart from "./pages/Cart"
+import AdminPage from "./pages/adminPages/AdminPage"
 import "./App.css"
 
 function App() {
   const [token, setToken] = useState("")
-  
 
   useEffect(() => {
     setToken(localStorage.getItem("token"))
@@ -26,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Footer token={token} setToken={setToken} />
     </>
