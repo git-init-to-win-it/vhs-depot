@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 const { Client } = require('pg');
 const client = new Client(process.env.DATABASE_URL || "postgresql://localhost:5432/vhsdepot")
 
-async function getAllMovies() {
+const getAllMovies = async () => {
   try {
     const allMovies = await prisma.movies.findMany({});
     return allMovies;
@@ -13,8 +13,23 @@ async function getAllMovies() {
   }
 }
 
+const getOneMovieById = async (inputId) => {
+  try {
+    const oneMovieById = await prisma.movies.findUnique({
+      where: {
+        id: inputId
+      }
+    })
+    return oneMovieById;
+   } catch (error) {
+    throw error
+  }
+}
+
+
 module.exports = {
   client,
-  getAllMovies
+  getAllMovies,
+  getOneMovieById
 }
 
