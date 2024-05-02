@@ -1,15 +1,10 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
+import GetAllMovies from "../components/GetAllMovies"
+
 const Home = () => {
-  return <>
-    <h1>HOME</h1>
-    
-    <Link to ="/login"> LOGIN </Link>
-    <Link to ="/register"> REGISTER </Link>
-    
-    
-    </>
+  return <div><div><GetAllMovies /></div></div>
 }
 
 export default Home
