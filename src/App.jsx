@@ -1,21 +1,22 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import { Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import GetAllMovies from './components/getAllMovies';
-const API_URL = "postgres://vhsdepot_user:S6IJK67rtCIGZ5hSNilHGcWcxOkzPms2@dpg-cop777acn0vc73dnnrm0-a.oregon-postgres.render.com/vhsdepot"
+
+import { useState } from "react"
+import "./App.css"
+import { Route, Routes } from "react-router-dom"
+import NavBar from "./components/NavBar"
+import { useEffect } from "react"
+import Footer from "./components/Footer"
 
 
 function App() {
   const [token, setToken] = useState("")
 
   useEffect(() => {
-    setToken(localStorage.getItem('token'));
-  }, []);
+    setToken(localStorage.getItem("token"))
+  }, [])
 
   return (
     <>
-      <NavBar token={token} setToken={setToken}/>
+      <NavBar token={token} setToken={setToken} />
       <Routes>
         <Route path="/" element={<GetAllMovies API_URL={API_URL}/>} />
         <Route path="/movies/:id" element={<h1>DETAILS PAGE</h1>} />
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<h1>REGISTER PAGE</h1>} />
         <Route path="/cart" element={<h1>CART</h1>} />
       </Routes>
+      <Footer token={token} setToken={setToken} />
     </>
   )
 }
