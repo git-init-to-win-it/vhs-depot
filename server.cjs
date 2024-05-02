@@ -4,8 +4,11 @@ const app = express()
 const port = process.env.PORT || 4000
 const path = require("path")
 const apiRouter = require("./api/index.cjs")
+const cors = require('cors')
 
 //Middleware
+app.use(cors());
+
 const bodyParser = require("body-parser")
 app.use(bodyParser.json())
 
