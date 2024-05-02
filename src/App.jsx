@@ -1,11 +1,13 @@
-
-import { useState } from "react"
-import "./App.css"
+import { useState, useEffect } from "react"
 import { Route, Routes } from "react-router-dom"
 import NavBar from "./components/NavBar"
-import { useEffect } from "react"
 import Footer from "./components/Footer"
-
+import Home from "./pages/Home"
+import MovieDetails from "./pages/MovieDetails"
+import Login from "./pages/authPages/Login"
+import Register from "./pages/authPages/Register"
+import Cart from "./pages/Cart"
+import "./App.css"
 
 function App() {
   const [token, setToken] = useState("")
@@ -18,11 +20,11 @@ function App() {
     <>
       <NavBar token={token} setToken={setToken} />
       <Routes>
-        <Route path="/" element={<GetAllMovies API_URL={API_URL}/>} />
-        <Route path="/movies/:id" element={<h1>DETAILS PAGE</h1>} />
-        <Route path="/login" element={<h1>LOGIN PAGE</h1>} />
-        <Route path="/register" element={<h1>REGISTER PAGE</h1>} />
-        <Route path="/cart" element={<h1>CART</h1>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/movies/:id" element={<MovieDetails />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer token={token} setToken={setToken} />
     </>
