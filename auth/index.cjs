@@ -27,46 +27,37 @@ router.post("/register", async (req, res, next) => {
   }
 })
 
-//login + token
+//login + admin + token
 router.post("/login", async (req, res, next) => {
   try{
     const currentUser = await prisma.users.findUnique({
       where: {username: req.body.username}
     });
+    const matchPassword = await bcrypt.compare(req.body.password, currentUser?.password);
 
     if(!currentUser || !matchPassword) {
       res.status(401).send("Cannot find user");
     }else {
       const token = jwt.sign({id: currentUser.id}, process.env.JWT_SECRET);
 
-      res.send({message: "Successfully Logged in", token: token});
+      res.send({message: "Successfully Logged in", token: token, isAdmin: currentUser.role === "admin"});
     }
-    
+    /* 
+    if(currentUser.role === "admin" && matchPassword){
+      const adminToken = jwt.sign({id: currentUser.id}, process.env.JWT_SECRET);
+      res.send({message: "Welcome admin", token: adminToken});
+      ?? res.redirect("/admin")
+    } else if (currentUser.role === "user" && matchPassword){
+      const userToken = jwt.sign({id: currentUser.id}, process.env.JWT_SECRET);
+      res.send({message: "Successfully Logged in", token: userToken})
+    } else {
+      res.status(401).send("Cannot find user");
+    }
+    */
   } catch(error){
     next(error);
   }
 
 });
-
-//admin
-router.post("/admin", async(req, res) => {
-  try{
-    const currentRole = await prisma.users.findUnique({
-      where: {
-        username: req.body.username
-      }
-    });
-    const matchPassword = await bcrypt.compare(req.body.password, currentRole?.password);
-
-    if(!currentRole.role === "admin" || !matchPassword){
-      res.status(401).send("You do not have permission to access this page");
-    } else {
-      const token = jwt.sign({id: currentRole.id}, process.env.JWT_SECRET);
-      res.send({message: "Welcome admin", token: token});
-    }
-  }catch(error){
-    console.log("CAUGHT ERROR WHEN LOCATING ADMIN");
-  }
-})
 
 module.exports = router
