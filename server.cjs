@@ -2,6 +2,7 @@ require("dotenv").config()
 const express = require("express")
 const app = express()
 const port = process.env.PORT || 4000
+const path = require("path")
 const apiRouter = require("./api/index.cjs")
 
 //Middleware
@@ -23,6 +24,7 @@ app.use(express.json())
 //Server Start
 app.use("/api", apiRouter)
 app.use("/auth", require("./auth/index.cjs"))
+app.use(express.static(path.join(__dirname, "/dist")))
 
 //Root Route
 app.get("/", async (req, res, next) => {
