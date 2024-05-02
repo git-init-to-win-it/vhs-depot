@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import { useEffect } from 'react';
+import Footer from './components/Footer';
 
 function App() {
   const [token, setToken] = useState("")
@@ -20,6 +22,7 @@ function App() {
         <Route path="/register" element={<h1>REGISTER PAGE</h1>} />
         <Route path="/cart" element={<h1>CART</h1>} />
       </Routes>
+      <Footer token={token} setToken={setToken}/>
     </>
   )
 }
