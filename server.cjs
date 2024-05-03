@@ -24,6 +24,30 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+//parse headers
+app.use(async (req, res, next) => {
+  const authHeader = req.header("Authorization");
+  const prefix = "Bearer ";
+
+  if (!authHeader) {
+    next();
+  } else if (authHeader.startsWith(prefix)) {
+    const token = authHeader.slice(prefix.length);
+    const { username } = jwt.verify(token, process.env.JWT_SECRET);
+    if (!username) {
+      next();
+    } else {
+      const user = await prisma.users.findUnique({
+        where: {username: req.user.username}
+      });
+      req.user = { id: user.id, username: user.username };
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
 //Server Start
 app.use("/api", apiRouter)
 app.use("/auth", require("./auth/index.cjs"))
