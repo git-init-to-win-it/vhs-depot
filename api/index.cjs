@@ -10,4 +10,7 @@ apiRouter.use("/user", usersRouter)
 const movieRouter = require("./movie.cjs")
 apiRouter.use("/movie", movieRouter)
 
+const cartRouter = require("./cart.cjs")
+apiRouter.use("/cart", cartRouter)
+
 module.exports = apiRouter

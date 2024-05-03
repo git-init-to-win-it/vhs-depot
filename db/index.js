@@ -15,7 +15,7 @@ const getAllMovies = async () => {
   }
 }
 
-const getOneMovieById = async inputId => {
+const getOneMovieById = async (inputId) => {
   try {
     const oneMovieById = await prisma.movies.findUnique({
       where: {
@@ -28,8 +28,22 @@ const getOneMovieById = async inputId => {
   }
 }
 
+const getMoviesByCartId = async (inputCartId) => {
+  try {
+    const moviesByCartId = await prisma.movies.findMany({
+      where: {
+        cartid: inputCartId
+      }
+    })
+    return moviesByCartId
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   client,
   getAllMovies,
   getOneMovieById,
+  getMoviesByCartId
 }

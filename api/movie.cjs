@@ -14,6 +14,7 @@ movieRouter.get("/", async (req, res, next) => {
   }
 })
 
+
 movieRouter.get("/:id", async (req, res, next) => {
   try {
     const inputId = parseInt(req.params.id)
