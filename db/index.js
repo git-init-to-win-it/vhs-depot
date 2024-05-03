@@ -28,39 +28,6 @@ const getOneMovieById = async inputId => {
   }
 }
 
-const createMovieAsAdmin = async (
-  title,
-  genre,
-  description,
-  cartid,
-  userId
-) => {
-  try {
-    // Check if the user is an admin
-    const user = await prisma.users.findUnique({
-      where: {
-        id: userId,
-      },
-    })
-    if (!user || user.role !== "admin") {
-      throw new Error("Only admins can create movies")
-    }
-
-    // Create a new movie
-    const newMovie = await prisma.movies.create({
-      data: {
-        title,
-        genre,
-        description,
-        cartid,
-      },
-    })
-    return newMovie
-  } catch (error) {
-    throw error
-  }
-}
-
 module.exports = {
   client,
   getAllMovies,
