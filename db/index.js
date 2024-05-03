@@ -50,7 +50,7 @@ const getMoviesByCartId = async (inputCartId) => {
   } catch(err){
     console.error(err);
   }
-
+}
 
 const createMovieAsAdmin = async (
   title,
@@ -92,4 +92,4 @@ module.exports = {
   getOneMovieById,
   getMoviesByCartId,
   viewAllUsersAsAdmin
-}}
+}

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react"
 
 const GetAllMovies = () => {
-  const API_URL = "https://vhs-depot.onrender.com/api/movie"
 
   const [movies, setMovies] = useState([])
 
   const getMovies = async () => {
     try {
-      const response = await fetch(API_URL)
+      const response = await fetch(`/api/movie`)
       const moviesObject = await response.json()
       setMovies(moviesObject)
     } catch (error) {
