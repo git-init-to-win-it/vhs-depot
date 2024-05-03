@@ -33,6 +33,7 @@ router.post("/login", async (req, res, next) => {
     const currentUser = await prisma.users.findUnique({
       where: {username: req.body.username}
     });
+
     const matchPassword = await bcrypt.compare(req.body.password, currentUser?.password);
 
     if(!currentUser || !matchPassword) {
