@@ -1,9 +1,11 @@
 import React, { useState } from "react"
-import MovieManager from "../../components/CreateMovie"
-import CreateMovie from "../../components/CreateMovie"
-import EditndDelete from "../../components/EditndDelete"
+import MovieManager from "../../components/adminComponents/CreateMovie"
+import CreateMovie from "../../components/adminComponents/CreateMovie"
+import EditndDelete from "../../components/adminComponents/EditndDelete"
 
 const AdminPage = () => {
+  const API_URL = "https://vhs-depot.onrender.com/api/movie"
+
   const [currentComponent, setCurrentComponent] = useState("Create")
 
   const handleComponentChange = component => {
