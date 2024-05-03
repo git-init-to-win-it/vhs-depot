@@ -47,6 +47,9 @@ const getMoviesByCartId = async (inputCartId) => {
       }
     })
     return moviesByCartId
+  } catch(err){
+    console.error(err);
+  }
 
 
 const createMovieAsAdmin = async (
@@ -87,6 +90,6 @@ module.exports = {
   client,
   getAllMovies,
   getOneMovieById,
-  getMoviesByCartId
+  getMoviesByCartId,
   viewAllUsersAsAdmin
-}
+}}
