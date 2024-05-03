@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import CartButton from './CartButton';
 
 const NavBar = ({token, setToken}) => {
   //created ternary for logged in and non-logged in users. They can be identified by token.
@@ -8,7 +9,7 @@ const NavBar = ({token, setToken}) => {
       <Link to="/">Home</Link>
       {token ? (
         <> 
-        <Link to="/cart">Cart</Link>
+        <Link to="/cart"><CartButton /></Link>
         <Link onClick={(e) => {
           setToken("");
           localStorage.setItem("token", "");
