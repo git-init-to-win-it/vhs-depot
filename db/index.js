@@ -11,7 +11,18 @@ const getAllMovies = async () => {
     const allMovies = await prisma.movies.findMany({})
     return allMovies
   } catch (error) {
-    throw error
+    throw error;
+  }
+}
+
+const viewAllUsersAsAdmin = async () => {
+  try {
+    const allUsers = await prisma.users.findMany({})
+    return allUsers
+    
+  } catch (error) {
+    throw error;
+    
   }
 }
 
@@ -61,8 +72,10 @@ const createMovieAsAdmin = async (
   }
 }
 
+
 module.exports = {
   client,
   getAllMovies,
   getOneMovieById,
+  viewAllUsersAsAdmin
 }
