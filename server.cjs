@@ -4,10 +4,11 @@ const app = express()
 const port = process.env.PORT || 4000
 const path = require("path")
 const apiRouter = require("./api/index.cjs")
-const cors = require('cors')
+const cors = require("cors")
+const jwt = require("jsonwebtoken")
 
 //Middleware
-app.use(cors());
+app.use(cors())
 
 const bodyParser = require("body-parser")
 app.use(bodyParser.json())
@@ -26,32 +27,35 @@ app.use(express.json())
 
 //parse headers
 app.use(async (req, res, next) => {
-  const authHeader = req.header("Authorization");
-  const prefix = "Bearer ";
+  const authHeader = req.header("Authorization")
+  const prefix = "Bearer "
 
   if (!authHeader) {
-    next();
+    next()
   } else if (authHeader.startsWith(prefix)) {
-    const token = authHeader.slice(prefix.length);
-    const { username } = jwt.verify(token, process.env.JWT_SECRET);
+    const token = authHeader.slice(prefix.length)
+    const { username } = jwt.verify(token, process.env.JWT_SECRET)
     if (!username) {
-      next();
+      next()
     } else {
       const user = await prisma.users.findUnique({
-        where: {username: req.user.username}
-      });
-      req.user = { id: user.id, username: user.username };
-      next();
+        where: { username: req.user.username },
+      })
+      req.user = { id: user.id, username: user.username }
+      next()
     }
   } else {
-    next();
+    next()
   }
-});
+})
 
 //Server Start
 app.use("/api", apiRouter)
 app.use("/auth", require("./auth/index.cjs"))
 app.use("/", express.static(path.join(__dirname, "/dist")))
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"))
+})
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`)

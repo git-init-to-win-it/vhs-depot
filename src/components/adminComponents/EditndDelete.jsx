@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react"
-import { getMovies } from "../../utils"
+import React, { useState, useEffect, useContext } from "react"
+import { MovieContext } from "../../MovieContext"
 
 const EditndDelete = () => {
-  const [movies, setMovies] = useState([])
   const [editing, setEditing] = useState(null)
   const [loading, setLoading] = useState(true)
-
-  // useEffect(() => {
-  //   getMovies().then(moviesData => setMovies(moviesData))
-  //   setLoading(false)
-  // }, [])
+  const { movies, setMovies } = useContext(MovieContext)
 
   const handleEdit = movieId => {
     setEditing(movieId)
@@ -33,7 +28,7 @@ const EditndDelete = () => {
   }
 
   const handleDelete = movieId => {
-    fetch(`${API_URL}/${movieId}`, {
+    fetch(`${api / movie}/${movieId}`, {
       method: "DELETE",
     })
       .then(response => response.json())
@@ -43,37 +38,24 @@ const EditndDelete = () => {
       .catch(error => console.error(error))
   }
 
+  if (!movies) {
+    return <h2>Loading..</h2>
+  }
+
   return (
     <div>
       <h1>Movies</h1>
       <ul>
         {movies.map(movie => (
-          <li key={movie._id}>
+          <li key={movie.id}>
             <h2>{movie.title}</h2>
-            <p>{movie.description}</p>
+            <h4>{movie.description}</h4>
+            <p>{movie.genre}</p>
             <button onClick={() => handleEdit(movie._id)}>Edit</button>
             <button onClick={() => handleDelete(movie._id)}>Delete</button>
           </li>
         ))}
       </ul>
-      {editing && (
-        <div>
-          <h2>Edit Movie</h2>
-          <form>
-            // Form fields to edit movie title and description
-            <button
-              onClick={() =>
-                handleUpdate(editing, {
-                  title: "New Title", // Update title
-                  description: "New Description", // Update description
-                })
-              }
-            >
-              Update
-            </button>
-          </form>
-        </div>
-      )}
     </div>
   )
 }
