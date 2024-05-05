@@ -4,38 +4,76 @@ import { MovieContext } from "../../MovieContext"
 const EditndDelete = () => {
   const [editing, setEditing] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [movieUpdateData, setMovieUpdateData] = useState({
+    title: "",
+    description: "",
+    genre: "",
+  })
   const { movies, setMovies } = useContext(MovieContext)
 
   const handleEdit = movieId => {
-    setEditing(movieId)
+    // If the clicked movie is already being edited, revert to null
+    if (editing === movieId) {
+      setMovieUpdateData({
+        title: "",
+        description: "",
+        genre: "",
+      })
+      setEditing(null)
+    } else {
+      // Find the movie being edited
+      const editedMovie = movies.find(movie => movie.id === movieId)
+      // Set the initial state of movieUpdateData with the values from the edited movie
+      setMovieUpdateData({
+        title: editedMovie.title,
+        description: editedMovie.description,
+        genre: editedMovie.genre,
+      })
+      // Set editing state
+      setEditing(movieId)
+    }
   }
 
-  const handleUpdate = (movieId, updatedMovieData) => {
-    fetch(`${API_URL}/${movieId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedMovieData),
-    })
-      .then(response => response.json())
-      .then(updatedMovie => {
-        setMovies(
-          movies.map(movie => (movie._id === movieId ? updatedMovie : movie))
-        )
+  const handleUpdate = async (movieId, updatedMovieData) => {
+    console.log("movie Id:", movieId, "updatedMovieData", updatedMovieData)
+
+    try {
+      const response = await fetch(`api/movie/${movieId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedMovieData),
       })
-      .catch(error => console.error(error))
+      if (!response.ok) {
+        throw new Error("Failed to update movie.")
+      }
+      const updatedMovie = await response.json()
+      setMovies(
+        movies.map(movie => (movie.id === movieId ? updatedMovie : movie))
+      )
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setEditing(null) // Reset editing state after update
+    }
   }
 
-  const handleDelete = movieId => {
-    fetch(`${api / movie}/${movieId}`, {
-      method: "DELETE",
-    })
-      .then(response => response.json())
-      .then(() => {
-        setMovies(movies.filter(movie => movie._id !== movieId))
+  const handleDelete = async movieId => {
+    console.log("movieId to be deleted", movieId)
+    try {
+      const response = await fetch(`/api/movie/${movieId}`, {
+        method: "DELETE",
       })
-      .catch(error => console.error(error))
+      if (!response.ok) {
+        throw new Error("Failed to delete movie.")
+      }
+
+      // Filter out the deleted movie from the movies array
+      setMovies(movies.filter(movie => movie.id !== movieId))
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   if (!movies) {
@@ -48,11 +86,52 @@ const EditndDelete = () => {
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>
-            <h2>{movie.title}</h2>
-            <h4>{movie.description}</h4>
-            <p>{movie.genre}</p>
-            <button onClick={() => handleEdit(movie._id)}>Edit</button>
-            <button onClick={() => handleDelete(movie._id)}>Delete</button>
+            {editing === movie.id ? (
+              <div>
+                <input
+                  type="text"
+                  value={movieUpdateData.title}
+                  onChange={e =>
+                    setMovieUpdateData(prevState => ({
+                      ...prevState,
+                      title: e.target.value,
+                    }))
+                  }
+                />
+                <input
+                  type="text"
+                  value={movieUpdateData.description}
+                  onChange={e =>
+                    setMovieUpdateData(prevState => ({
+                      ...prevState,
+                      description: e.target.value,
+                    }))
+                  }
+                />
+                <input
+                  type="text"
+                  value={movieUpdateData.genre}
+                  onChange={e =>
+                    setMovieUpdateData(prevState => ({
+                      ...prevState,
+                      genre: e.target.value,
+                    }))
+                  }
+                />
+                <button onClick={() => handleEdit(movie.id)}>Close</button>
+                <button onClick={() => handleUpdate(movie.id, movieUpdateData)}>
+                  Save Changes
+                </button>
+              </div>
+            ) : (
+              <div>
+                <h2>{movie.title}</h2>
+                <h4>{movie.description}</h4>
+                <p>{movie.genre}</p>
+                <button onClick={() => handleEdit(movie.id)}>Edit</button>
+                <button onClick={() => handleDelete(movie.id)}>Delete</button>
+              </div>
+            )}
           </li>
         ))}
       </ul>
