@@ -4,8 +4,6 @@ import CreateMovie from "../../components/adminComponents/CreateMovie"
 import EditndDelete from "../../components/adminComponents/EditndDelete"
 
 const AdminPage = () => {
-  const API_URL = "https://vhs-depot.onrender.com/api/movie"
-
   const [currentComponent, setCurrentComponent] = useState("Create")
 
   const handleComponentChange = component => {
