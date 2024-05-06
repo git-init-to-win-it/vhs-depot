@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
         <Route path="/login" element={<Login setToken={setToken}/>} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register setToken={setToken}/>} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
