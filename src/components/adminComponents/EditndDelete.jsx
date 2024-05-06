@@ -12,39 +12,36 @@ const EditndDelete = () => {
   const { movies, setMovies } = useContext(MovieContext)
 
   const handleEdit = movieId => {
-    // If the clicked movie is already being edited, revert to null
     if (editing === movieId) {
       setMovieUpdateData({
         title: "",
-        description: "",
         genre: "",
+        description: "",
       })
       setEditing(null)
     } else {
-      // Find the movie being edited
       const editedMovie = movies.find(movie => movie.id === movieId)
-      // Set the initial state of movieUpdateData with the values from the edited movie
       setMovieUpdateData({
         title: editedMovie.title,
         description: editedMovie.description,
         genre: editedMovie.genre,
       })
-      // Set editing state
       setEditing(movieId)
     }
   }
 
   const handleUpdate = async (movieId, updatedMovieData) => {
-    console.log("movie Id:", movieId, "updatedMovieData", updatedMovieData)
-
     try {
-      const response = await fetch(`api/movie/${movieId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedMovieData),
-      })
+      const response = await fetch(
+        `http://localhost:3000/api/movie/${movieId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedMovieData),
+        }
+      )
       if (!response.ok) {
         throw new Error("Failed to update movie.")
       }
@@ -55,21 +52,23 @@ const EditndDelete = () => {
     } catch (error) {
       console.error(error)
     } finally {
-      setEditing(null) // Reset editing state after update
+      setEditing(null)
     }
   }
 
   const handleDelete = async movieId => {
     console.log("movieId to be deleted", movieId)
     try {
-      const response = await fetch(`/api/movie/${movieId}`, {
-        method: "DELETE",
-      })
+      const response = await fetch(
+        `http://localhost:3000/api/movie/${movieId}`,
+        {
+          method: "DELETE",
+        }
+      )
       if (!response.ok) {
         throw new Error("Failed to delete movie.")
       }
 
-      // Filter out the deleted movie from the movies array
       setMovies(movies.filter(movie => movie.id !== movieId))
     } catch (error) {
       console.error(error)
