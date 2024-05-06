@@ -4,30 +4,19 @@ import CreateMovie from "../../components/adminComponents/CreateMovie"
 import EditndDelete from "../../components/adminComponents/EditndDelete"
 
 const AdminPage = () => {
-  const API_URL = "https://vhs-depot.onrender.com/api/movie"
+  const [showCreate, setShowCreate] = useState(false)
 
-  const [currentComponent, setCurrentComponent] = useState("Create")
-
-  const handleComponentChange = component => {
-    setCurrentComponent(component)
+  const handleShowCreate = () => {
+    setShowCreate(prevState => !prevState)
   }
 
   return (
     <div>
       <div>
-        <div>
-          <button onClick={() => handleComponentChange("Create")}>
-            Create
-          </button>
-          <button onClick={() => handleComponentChange("Edit")}>Edit</button>
-          <button onClick={() => handleComponentChange("Delete")}>
-            Delete
-          </button>
-        </div>
+        <button onClick={handleShowCreate}>Create Movie</button>
+        {showCreate && <CreateMovie />}
+        <EditndDelete />
       </div>
-      {currentComponent === "Create" && <CreateMovie />}
-      {currentComponent === "Edit" && <EditndDelete edit={true} />}
-      {currentComponent === "Delete" && <EditndDelete delete={true} />}
     </div>
   )
 }

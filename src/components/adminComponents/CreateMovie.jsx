@@ -5,17 +5,24 @@ const CreateMovie = () => {
   const [genre, setGenre] = useState("")
   const [description, setDescription] = useState("")
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
     const movieData = { title, genre, description }
-    fetch("/api/movies", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(movieData),
-    })
-      .then(response => response.json())
-      .then(data => console.log("Movie created:", data))
-      .catch(error => console.error("Error creating movie:", error))
+    console.log(movieData)
+    try {
+      const response = await fetch("/api/movie", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(movieData),
+      })
+      if (!response.ok) {
+        throw new Error("Failed to create movie.")
+      }
+      const data = await response.json()
+      console.log("Movie created:", data)
+    } catch (error) {
+      console.error("Error creating movie:", error)
+    }
   }
 
   return (

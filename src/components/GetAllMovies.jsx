@@ -1,25 +1,16 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { MovieContext } from "../MovieContext"
 
 const GetAllMovies = () => {
+  const { movies, setMovies } = useContext(MovieContext)
 
-  const [movies, setMovies] = useState([])
-
-  const getMovies = async () => {
-    try {
-      const response = await fetch(`/api/movie`)
-      const moviesObject = await response.json()
-      setMovies(moviesObject)
-    } catch (error) {
-      console.error("Error fetching movies:", error)
-    }
+  if (!movies) {
+    return <h2>Loading..</h2>
   }
 
-  useEffect(() => {
-    getMovies()
-  }, [])
   return (
     <div>
-      <h2>All Movies</h2>
+      <h2>Movie List</h2>
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>{movie.title}</li>
