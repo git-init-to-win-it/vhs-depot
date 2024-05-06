@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
     return (
     <button
       className="cartButton"
-      onClick={<Link to="/cart"></Link>}
+      onClick={() => {<Link to="/cart"></Link>}}
       style={{ display: 'block' }}
     >
       Cart
