@@ -65,7 +65,7 @@ const Register = ({setToken}) => {
             setShowPassword((prev) => !prev)
           }}
         />
-        {error && <div>Username exists, please try again.</div>}
+        {error && <div>Username exists, please try again or {<Link to="/login">log in</Link>}.</div>}
       <button>Sign Up!</button>
     </form>
     </>
