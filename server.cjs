@@ -7,6 +7,7 @@ const apiRouter = require("./api/index.cjs")
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
 
+
 //Middleware
 app.use(cors())
 
@@ -53,6 +54,10 @@ app.use(async (req, res, next) => {
 app.use("/api", apiRouter)
 app.use("/auth", require("./auth/index.cjs"))
 app.use("/", express.static(path.join(__dirname, "/dist")))
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"))
+})
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"))
 })
