@@ -1,7 +1,10 @@
 import React from "react"
+import ClearCart from "../components/ClearCart"
 
 const Cart = () => {
-  return <div>Cart</div>
+  return <>
+ <ClearCart />
+  </>
 }
 
 export default Cart
