@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = ({ setToken }) => {
+const Login = ({ setToken, setIsAdmin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
   const navigate = useNavigate();
   
 
@@ -21,14 +22,19 @@ const Login = ({ setToken }) => {
           password
         })
       });
-      console.log(result);
+      //console.log(result);
       const json = await result.json();
-      //console.log(json);
 
+      //step 1
       if(json.token){
         localStorage.setItem('token', json.token);
         setToken(json.token);
-        navigate("/");
+        if (json.isAdmin === true) {
+          setIsAdmin(true);
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
       }
     }catch(error){
       console.log("ERROR CAUGHT WHEN FETCHING API");

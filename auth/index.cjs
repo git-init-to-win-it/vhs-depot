@@ -4,11 +4,6 @@ const prisma = new PrismaClient()
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 
-// Register a new instructor account
-router.get("/", async (req, res, next) => {
-  res.send("Auth route")
-})
-
 router.post("/register", async (req, res, next) => {
   try {
     const saltRounds = 10
@@ -50,21 +45,24 @@ router.post("/login", async (req, res, next) => {
         isAdmin: currentUser.role === "admin",
       })
     }
-    /* 
-    if(currentUser.role === "admin" && matchPassword){
-      const adminToken = jwt.sign({id: currentUser.id}, process.env.JWT_SECRET);
-      res.send({message: "Welcome admin", token: adminToken});
-      ?? res.redirect("/admin")
-    } else if (currentUser.role === "user" && matchPassword){
-      const userToken = jwt.sign({id: currentUser.id}, process.env.JWT_SECRET);
-      res.send({message: "Successfully Logged in", token: userToken})
-    } else {
-      res.status(401).send("Cannot find user");
-    }
-    */
   } catch (error) {
     next(error)
   }
 })
+
+//create a route that checks the req.user.role === "admin"
+router.get("/admin", (req, res) => {
+  if (!req.user) {
+    return res.status(401).send({ message: 'Unauthorized', isAdmin: false});
+  }
+  // Check if the user's role is 'admin'
+  if (req.user.role === "admin") {
+      res.send({ isAdmin: true });
+  } else {
+      res.send({ isAdmin: false });
+  }
+});
+
+//we need to send back an object with the key isAdmin that has true or false
 
 module.exports = router
