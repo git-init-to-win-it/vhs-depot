@@ -43,7 +43,7 @@ app.use(async (req, res, next) => {
       const user = await prisma.users.findUnique({
         where: { id: id },
       })
-      console.log("Found", user);
+      // console.log("Found", user);
       req.user = { id: user.id, username: user.username, role: user.role }
       next()
     }
