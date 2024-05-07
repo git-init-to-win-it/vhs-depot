@@ -3,7 +3,7 @@ import MovieManager from "../../components/adminComponents/CreateMovie"
 import CreateMovie from "../../components/adminComponents/CreateMovie"
 import EditndDelete from "../../components/adminComponents/EditndDelete"
 
-const AdminPage = () => {
+const AdminPage = ({ token }) => {
   const [showCreate, setShowCreate] = useState(false)
 
   const handleShowCreate = () => {
@@ -14,8 +14,8 @@ const AdminPage = () => {
     <div>
       <div>
         <button onClick={handleShowCreate}>Create Movie</button>
-        {showCreate && <CreateMovie />}
-        <EditndDelete />
+        {showCreate && <CreateMovie token={token} />}
+        <EditndDelete token={token} />
       </div>
     </div>
   )

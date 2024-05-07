@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { MovieContext } from "../../MovieContext"
 import { useContext } from "react"
 
-const CreateMovie = () => {
+const CreateMovie = ({ token }) => {
   const [title, setTitle] = useState("")
   const [genre, setGenre] = useState("")
   const [description, setDescription] = useState("")
@@ -14,7 +14,10 @@ const CreateMovie = () => {
     try {
       const response = await fetch("http://localhost:3000/api/movie", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(movieData),
       })
       if (!response.ok) {

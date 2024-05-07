@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import { MovieContext } from "../../MovieContext"
 
-const EditndDelete = () => {
+const EditndDelete = ({ token }) => {
   const [editing, setEditing] = useState(null)
   const [loading, setLoading] = useState(true)
   const [movieUpdateData, setMovieUpdateData] = useState({
@@ -38,6 +38,7 @@ const EditndDelete = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(updatedMovieData),
         }
@@ -63,6 +64,9 @@ const EditndDelete = () => {
         `http://localhost:3000/api/movie/${movieId}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       )
       if (!response.ok) {
