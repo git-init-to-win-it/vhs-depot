@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { MovieContext } from "../../MovieContext"
 import { useContext } from "react"
+import "../../styles/createmovie.css"
 
 const CreateMovie = ({ token }) => {
   const [title, setTitle] = useState("")
@@ -31,26 +32,28 @@ const CreateMovie = ({ token }) => {
   }
 
   return (
-    <div>
-      <h1>Create Movie</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Title"
-          value={title}
-          onChange={event => setTitle(event.target.value)}
-        />
-        <input
-          placeholder="Genre"
-          value={genre}
-          onChange={event => setGenre(event.target.value)}
-        />
-        <input
-          placeholder="Description"
-          value={description}
-          onChange={event => setDescription(event.target.value)}
-        />
-        <button>Create</button>
-      </form>
+    <div className="card-container">
+      <div className="card-wrapper">
+        <h1>Create Movie</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            placeholder="Title"
+            value={title}
+            onChange={event => setTitle(event.target.value)}
+          />
+          <input
+            placeholder="Genre"
+            value={genre}
+            onChange={event => setGenre(event.target.value)}
+          />
+          <input
+            placeholder="Description"
+            value={description}
+            onChange={event => setDescription(event.target.value)}
+          />
+          <button>Create</button>
+        </form>
+      </div>
     </div>
   )
 }
