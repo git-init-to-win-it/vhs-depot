@@ -24,7 +24,7 @@ const Register = ({setToken}) => {
       });
       console.log(result);
       const json = await result.json();
-      //console.log(json);
+      console.log(json);
       if(json.token){
         localStorage.setItem("token", json.token);
         setToken(json.token);

@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "start:dev": "nodemon server.cjs",
     "start": "node server.cjs",
-    "seed": "node ./db/seed.js && node server.cjs"
+    "seed": "node ./db/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
