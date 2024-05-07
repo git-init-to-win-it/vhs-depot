@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import RemoveCartItem from "./RemoveCartItem";
 
 const GetCartMovies = ({ token, success, setSuccess }) => {
   const [cartMovies, setCartMovies] = useState([]);
@@ -32,6 +33,7 @@ const GetCartMovies = ({ token, success, setSuccess }) => {
      <h2>{movie.title}</h2>
      <h3 >{movie.genre}</h3>
      <p>{movie.description}</p>
+     <RemoveCartItem success={success} setSuccess={setSuccess} movieid={movie.id}/>
      </div> 
     ))}
     </>

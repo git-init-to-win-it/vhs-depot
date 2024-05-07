@@ -42,7 +42,7 @@ function App() {
     <>
       <NavBar token={token} setToken={setToken} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home isAdmin={isAdmin}/>} />
         <Route path="/movies/:id" element={<MovieDetails />} />
         <Route
           path="/login"
@@ -54,6 +54,7 @@ function App() {
           path="/admin"
           element={<AdminPage token={token} isAdmin={isAdmin} />}
         />
+
       </Routes>
       <Footer token={token} setToken={setToken} />
     </>
