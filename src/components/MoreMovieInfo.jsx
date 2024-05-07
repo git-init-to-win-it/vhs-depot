@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import AddToCart from "./AddToCart";
 
 
 const MoreMovieInfo = () => {
@@ -33,7 +34,10 @@ const MoreMovieInfo = () => {
         </ul>
     </>
     )}
+    <AddToCart />
+
     <button onClick={() => navigate("/")}>Back to all VHS tapes</button>
+
   </>
   
   );

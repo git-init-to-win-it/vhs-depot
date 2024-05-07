@@ -1,12 +1,16 @@
-import React from "react"
-import ClearCart from "../components/ClearCart"
-import GetCartMovies from "../components/GetCartMovies"
+import React, { useState } from "react";
+import GetCartMovies from "../components/GetCartMovies";
+import ClearCart from "../components/ClearCart";
 
 const Cart = () => {
-  return <>
-  <GetCartMovies/>
- <ClearCart />
-  </>
-}
+  const [success, setSuccess] = useState(false);
 
-export default Cart
+  return (
+    <>
+      <GetCartMovies success={success} setSuccess={setSuccess} />
+      <ClearCart success={success} setSuccess={setSuccess} />
+    </>
+  );
+};
+
+export default Cart;

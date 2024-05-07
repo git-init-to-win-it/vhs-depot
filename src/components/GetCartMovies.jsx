@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-
-
-const GetCartMovies = ({ token }) => {
+const GetCartMovies = ({ token, success, setSuccess }) => {
   const [cartMovies, setCartMovies] = useState([]);
+  token = localStorage.getItem(`token`);
   useEffect(() => {
     const fetchCartMovies = async () => {
       try {
@@ -24,7 +23,7 @@ const GetCartMovies = ({ token }) => {
       }
     }
     fetchCartMovies();
-  }, []);
+  }, [success]);
   
   return (
     <>
@@ -38,7 +37,5 @@ const GetCartMovies = ({ token }) => {
     </>
   )
 }
-
-
 
 export default GetCartMovies;
