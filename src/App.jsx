@@ -9,11 +9,11 @@ import Register from "./pages/authPages/Register"
 import Cart from "./pages/Cart"
 import AdminPage from "./pages/adminPages/AdminPage"
 import "./App.css"
-
+import UsersList from "./components/adminComponents/UsersList"
 
 function App() {
-  const [token, setToken] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [token, setToken] = useState("")
+  const [isAdmin, setIsAdmin] = useState(false)
 
   //useEffect to check if a user is an Admin
   useEffect(() => {
@@ -23,23 +23,23 @@ function App() {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${localToken}`
-          }
-        });
-        const data = await response.json();
-        setIsAdmin(data.isAdmin);
+            Authorization: `Bearer ${localToken}`,
+          },
+        })
+        const data = await response.json()
+        setIsAdmin(data.isAdmin)
       } catch (error) {
-        console.log("ERROR caught when fetching get request", error);
+        console.log("ERROR caught when fetching get request", error)
       }
-    };
-    const localToken = localStorage.getItem("token");
-    if (localToken) {
-      setToken(localToken);
-      fetchRole();
     }
-  }, []);
+    const localToken = localStorage.getItem("token")
+    if (localToken) {
+      setToken(localToken)
+      fetchRole()
+    }
+  }, [])
 
- return (
+  return (
     <>
       <NavBar token={token} setToken={setToken} />
       <Routes>
@@ -49,6 +49,7 @@ function App() {
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPage token={token} isAdmin={isAdmin} />} />
+
       </Routes>
       <Footer token={token} setToken={setToken} />
     </>
