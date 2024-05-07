@@ -12,9 +12,13 @@ import "./App.css"
 
 function App() {
   const [token, setToken] = useState("")
+  const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
-    setToken(localStorage.getItem("token"))
+    const storedToken = localStorage.getItem("token")
+    const storedIsAdmin = localStorage.getItem("isAdmin")
+    setToken(storedToken)
+    setIsAdmin(storedIsAdmin === "true")
   }, [])
 
   return (
@@ -23,8 +27,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
-        <Route path="/login" element={<Login setToken={setToken}/>} />
-        <Route path="/register" element={<Register setToken={setToken}/>} />
+        <Route
+          path="/login"
+          element={<Login setToken={setToken} setIsAdmin={setIsAdmin} />}
+        />
+        <Route path="/register" element={<Register setToken={setToken} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
