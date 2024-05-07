@@ -43,7 +43,7 @@ function App() {
     <>
       <NavBar token={token} setToken={setToken} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home token={token}/>} />
         <Route path="/movies/:id" element={<MovieDetails />} />
         <Route path="/login" element={<Login setToken={setToken} setIsAdmin={setIsAdmin} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />

@@ -5,6 +5,7 @@ import AddToCart from "./AddToCart";
 
 
 const MoreMovieInfo = () => {
+  const token = localStorage.getItem(`token`);
   const navigate = useNavigate();
   const [movieToDisplay, setMovieToDisplay] = useState({});
   const params = useParams();
@@ -34,7 +35,8 @@ const MoreMovieInfo = () => {
         </ul>
     </>
     )}
-    <AddToCart />
+    {token ? (<AddToCart />) : <p>login to add VHS to cart</p>}
+    
 
     <button onClick={() => navigate("/")}>Back to all VHS tapes</button>
 
