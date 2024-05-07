@@ -16,7 +16,7 @@ const MovieProvider = ({ children }) => {
       }
     }
     getMovies()
-  }, [])
+  }, [setMovies])
 
   return (
     <MovieContext.Provider value={{ movies, setMovies }}>

@@ -1,25 +1,30 @@
 import React, { useState } from "react"
+import { MovieContext } from "../../MovieContext"
+import { useContext } from "react"
 
-const CreateMovie = () => {
+const CreateMovie = ({ token }) => {
   const [title, setTitle] = useState("")
   const [genre, setGenre] = useState("")
   const [description, setDescription] = useState("")
+  const { setMovies } = useContext(MovieContext)
 
   const handleSubmit = async event => {
     event.preventDefault()
     const movieData = { title, genre, description }
-    console.log(movieData)
     try {
-      const response = await fetch("/api/movie", {
+      const response = await fetch("http://localhost:3000/api/movie", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(movieData),
       })
       if (!response.ok) {
         throw new Error("Failed to create movie.")
       }
       const data = await response.json()
-      console.log("Movie created:", data)
+      setMovies(prevMovies => [...prevMovies, data])
     } catch (error) {
       console.error("Error creating movie:", error)
     }
