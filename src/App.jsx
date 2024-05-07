@@ -11,13 +11,11 @@ import AdminPage from "./pages/adminPages/AdminPage"
 import "./App.css"
 
 function App() {
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState([])
 
-  useEffect(() => {
-    setToken(localStorage.getItem("token"))
-  }, [])
+ useState(() => {setToken(localStorage.getItem("token"))}, token)
 
-  return (
+ return (
     <>
       <NavBar token={token} setToken={setToken} />
       <Routes>
