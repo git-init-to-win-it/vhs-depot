@@ -11,9 +11,56 @@ const createUsersMoviesAndCart = async() => {
 
   console.log(`CLEARING TABLES`)
 
-  const clearUsers = await prisma.users.deleteMany({});
-  const clearMovies = await prisma.movies.deleteMany({});
-  const clearCart = await prisma.cart.deleteMany({});
+  const usersToDelete = await prisma.users.findMany({
+    where: {
+      OR: [
+        { username: 'uno' },
+        { username: 'does' },
+        { username: 'dos' },
+        { username: 'tres' },
+        { username: 'admin' }
+      ]
+    }
+  });
+  
+  if (usersToDelete.length > 0) {
+    const clearUsers = await prisma.users.deleteMany({
+      where: {
+        OR: [
+          { username: 'uno' },
+          { username: 'does' },
+          { username: 'dos' },
+          { username: 'tres' },
+          { username: 'admin' }
+        ]
+      }
+    });
+    console.log(`${clearUsers.count} users deleted.`);
+  } else {
+    console.log('No users found matching the criteria.');
+  }
+  
+  const moviesToDelete = await prisma.movies.findMany({
+    where: {
+      id: {
+        in: [1, 2, 3, 4, 5]
+      }
+    }
+  });
+  
+  if (moviesToDelete.length > 0) {
+    const clearMovies = await prisma.movies.deleteMany({
+      where: {
+        id: {
+          in: [1, 2, 3, 4, 5]
+        }
+      }
+    });
+    console.log(`${clearMovies.count} movies deleted.`);
+  } else {
+    console.log('No movies found matching the criteria.');
+  }
+  
   console.log(`TABLES CLEARED`)
 
 
@@ -31,7 +78,7 @@ const createUsersMoviesAndCart = async() => {
   userArray.push(user1);
   const user2 = await prisma.users.create({
     data:{
-      username: `does`,
+      username: `dos`,
       password: hashedPass2,
     }
   });

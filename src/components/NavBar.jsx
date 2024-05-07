@@ -20,7 +20,7 @@ const NavBar = ({ token, setToken }) => {
             </li>
             <li>
               <Link
-                onClick={e => {
+                onClick={() => {
                   setToken("")
                   localStorage.setItem("token", "")
                 }}

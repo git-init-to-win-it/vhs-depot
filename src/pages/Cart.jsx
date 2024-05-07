@@ -1,9 +1,10 @@
 import React from "react"
-import GetCartMovies from "../components/GetCartMovies"
+import ClearCart from "../components/ClearCart"
 
-
-const Cart = ({token}) => {
-  return <div><div><GetCartMovies token={token}/></div></div>
+const Cart = () => {
+  return <>
+ <ClearCart />
+  </>
 }
 
 export default Cart
