@@ -11,21 +11,19 @@ import AdminPage from "./pages/adminPages/AdminPage"
 import "./App.css"
 
 function App() {
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState([])
 
-  useEffect(() => {
-    setToken(localStorage.getItem("token"))
-  }, [])
+ useState(() => {setToken(localStorage.getItem("token"))}, token)
 
-  return (
+ return (
     <>
       <NavBar token={token} setToken={setToken} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
-        <Route path="/login" element={<Login setToken={setToken}/>} />
+        <Route path="/login" element={<Login setToken={setToken} token={token}/>} />
         <Route path="/register" element={<Register />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart token={token} />} />
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Footer token={token} setToken={setToken} />
