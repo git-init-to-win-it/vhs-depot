@@ -21,8 +21,10 @@ const AdminPage = ({ token, isAdmin }) => {
         <div>
           <button onClick={handleShowCreate}>Create Movie</button>
           {showCreate && <CreateMovie />}
+
           <button onClick={handleShowUsers}>Show Users</button>
           {showUsersList && <UsersList token={token} />}
+
           <EditndDelete />
         </div>
       ) : (

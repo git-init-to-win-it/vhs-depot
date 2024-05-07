@@ -9,7 +9,6 @@ import Register from "./pages/authPages/Register"
 import Cart from "./pages/Cart"
 import AdminPage from "./pages/adminPages/AdminPage"
 import "./App.css"
-import UsersList from "./components/adminComponents/UsersList"
 
 function App() {
   const [token, setToken] = useState("")
@@ -45,10 +44,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Home isAdmin={isAdmin}/>} />
         <Route path="/movies/:id" element={<MovieDetails />} />
-        <Route path="/login" element={<Login setToken={setToken} setIsAdmin={setIsAdmin} />} />
+        <Route
+          path="/login"
+          element={<Login setToken={setToken} setIsAdmin={setIsAdmin} />}
+        />
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/admin" element={<AdminPage token={token} isAdmin={isAdmin} />} />
+        <Route
+          path="/admin"
+          element={<AdminPage token={token} isAdmin={isAdmin} />}
+        />
 
       </Routes>
       <Footer token={token} setToken={setToken} />
