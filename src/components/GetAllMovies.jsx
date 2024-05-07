@@ -17,7 +17,11 @@ const GetAllMovies = () => {
       <h2>Movie List</h2>
       <ul>
         {movies.map(movie => (
-          <li onClick={() => handleClick(movie.id)} key={movie.id}>{movie.title}</li>
+          <>
+            <li key={movie.id}>{movie.title} 
+              <button onClick={() => handleClick(movie.id)}>More Info</button>
+            </li>
+          </>
         ))}
       </ul>
     </div>
