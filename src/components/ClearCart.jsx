@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
-const ClearCart = () => {
+const ClearCart = ({success, setSuccess}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
 
   const handleClearCart = async () => {
     const token = localStorage.getItem('token');
-    console.log(token);
     if (!token) {
       setError('Please try logging in, not sure how you got here');
       return;
