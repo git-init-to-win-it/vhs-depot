@@ -39,7 +39,7 @@ function App() {
     }
   }, []);
 
-  return (
+ return (
     <>
       <NavBar token={token} setToken={setToken} />
       <Routes>

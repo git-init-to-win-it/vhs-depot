@@ -39,17 +39,12 @@ const getOneMovieById = async (inputId) => {
   }
 }
 
-const getMoviesByCartId = async (inputCartId) => {
-  try {
-    const moviesByCartId = await prisma.movies.findMany({
-      where: {
-        cartid: inputCartId
-      }
-    })
-    return moviesByCartId
-  } catch(err){
-    console.error(err);
-  }
+const getMoviesByCartId = async () => {
+  
+
+
+
+
 }
 
 const createMovieAsAdmin = async (
