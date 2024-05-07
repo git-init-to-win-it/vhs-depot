@@ -9,7 +9,9 @@ const NavBar = ({ token, setToken }) => {
     <>
       <ul className="navbar-ul">
         <li>
+          <button>
           <Link to="/">Home</Link>
+        </button>
         </li>
         {token ? (
           <>
@@ -19,6 +21,7 @@ const NavBar = ({ token, setToken }) => {
               </Link>
             </li>
             <li>
+              <button>
               <Link
                 onClick={() => {
                   setToken("")
@@ -28,11 +31,14 @@ const NavBar = ({ token, setToken }) => {
               >
                 Logout
               </Link>
+              </button>
             </li>
           </>
         ) : (
           <li>
+            <button>
             <Link to="/login">Login</Link>
+            </button>
           </li>
         )}
       </ul>

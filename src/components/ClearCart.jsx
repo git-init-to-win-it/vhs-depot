@@ -37,7 +37,7 @@ const ClearCart = ({success, setSuccess}) => {
       {error && <p>Error: {error}</p>}
       {success && <p>Checkout Successful!</p>}
       <button onClick={handleClearCart} disabled={loading}>
-        Checkout Successful!
+        Checkout Cart!
       </button>
     </>
   );
