@@ -6,7 +6,8 @@ const path = require("path")
 const apiRouter = require("./api/index.cjs")
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
-
+const {PrismaClient} = require('@prisma/client');
+const prisma = new PrismaClient();
 
 //Middleware
 app.use(cors())
@@ -35,14 +36,15 @@ app.use(async (req, res, next) => {
     next()
   } else if (authHeader.startsWith(prefix)) {
     const token = authHeader.slice(prefix.length)
-    const { username } = jwt.verify(token, process.env.JWT_SECRET)
-    if (!username) {
+    const { id } = jwt.verify(token, process.env.JWT_SECRET)
+    if (!id) {
       next()
     } else {
       const user = await prisma.users.findUnique({
-        where: { username: req.user.username },
+        where: { id: id },
       })
-      req.user = { id: user.id, username: user.username }
+      console.log("Found", user);
+      req.user = { id: user.id, username: user.username, role: user.role }
       next()
     }
   } else {

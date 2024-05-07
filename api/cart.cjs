@@ -7,15 +7,84 @@ const jwt = require(`jsonwebtoken`)
 const { getMoviesByCartId } = require("../db")
 
 
-cartRouter.get("/:id", async (req, res, next) => {
-  const inputCartId = parseInt(req.params.id);
+cartRouter.get("/", async (req, res, next) => {
+  const authHeader = req.headers['authorization']
+  if (!authHeader) {
+    return res.status(401).send(`Please log in to see cart.`)
+  }
+  const prefix = `Bearer `
+  const token = authHeader.slice(prefix.length)
+
   try {
-    const moviesInCart = await getMoviesByCartId(inputCartId);
-    res.send(moviesInCart);
+    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+    const userid = decoded.id;
+    const verifyCartNum = await prisma.cart.findMany({
+      where: {
+        userid: userid
+      }
+    })
+    const curUserCartId = verifyCartNum[0].id;
+    if (!curUserCartId) {
+      return res.status(400).send("You don't have a cart!");
+    } else {
+      const curUserCartMovies = await prisma.movies.findMany({
+        where: {
+          cartid: curUserCartId
+        }
+      })
+      res.send(curUserCartMovies);
+    }
+   
   } catch (error) {
-    res.status(404).send(`Could not get movies in cart`);
+    console.log(error)
   }
 })
+
+cartRouter.put(`/`, async(req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  if (!authHeader) {
+    return res.status(401).send(`Please try logging in first`);
+  }
+  const prefix = `Bearer `;
+  const token = authHeader.slice(prefix.length);
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userid = decoded.id;
+    console.log(userid);
+    const userCart = await prisma.cart.findMany({
+      where: {
+        userid
+      }
+    });
+
+    for (const cartItem of userCart) {
+      const cartMovies = await prisma.movies.findMany({
+        where: {
+          cartid: cartItem.id
+        }
+      });
+
+      for (const movie of cartMovies) {
+        await prisma.movies.update({
+          where: {
+            id: movie.id
+          },
+          data: {
+            cartid: null
+          }
+        });
+      }
+    }
+
+    return res.status(200).send("Cart cleared successfully.");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("An error occurred while clearing the cart.");
+  }
+});
+
+module.exports = cartRouter;
+
 
 
 //WORK IN PROGRESS
