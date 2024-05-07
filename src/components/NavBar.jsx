@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import CartButton from "./CartButton"
 import "../styles/navbar.css"
 
-const NavBar = ({ token, setToken }) => {
+const NavBar = ({ token, setToken, isAdmin, setIsAdmin }) => {
   //created ternary for logged in and non-logged in users. They can be identified by token.
   //users are redirected to homepage once logged out.
   return (
@@ -23,6 +23,8 @@ const NavBar = ({ token, setToken }) => {
                 onClick={() => {
                   setToken("")
                   localStorage.setItem("token", "")
+                  localStorage.removeItem("isAdmin", "")
+                  setIsAdmin(false)
                 }}
                 to="/"
               >
@@ -33,6 +35,11 @@ const NavBar = ({ token, setToken }) => {
         ) : (
           <li>
             <Link to="/login">Login</Link>
+          </li>
+        )}
+        {isAdmin && (
+          <li>
+            <Link to="/admin">Admin</Link>
           </li>
         )}
       </ul>

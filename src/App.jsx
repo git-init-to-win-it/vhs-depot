@@ -23,7 +23,12 @@ function App() {
 
   return (
     <>
-      <NavBar token={token} setToken={setToken} />
+      <NavBar
+        token={token}
+        setToken={setToken}
+        isAdmin={isAdmin}
+        setIsAdmin={setIsAdmin}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
