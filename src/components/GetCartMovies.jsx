@@ -29,7 +29,7 @@ const GetCartMovies = ({ token, success, setSuccess }) => {
   return (
     <>
       {cartMovies.map(movie =>  (
-     <div key={movie.id}>
+     <div key={movie.id} className="cartMovieCard">
      <h2>{movie.title}</h2>
      <h3 >{movie.genre}</h3>
      <p>{movie.description}</p>
