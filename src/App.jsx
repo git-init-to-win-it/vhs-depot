@@ -43,18 +43,13 @@ function App() {
     <>
       <NavBar token={token} setToken={setToken} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home isAdmin={isAdmin}/>} />
         <Route path="/movies/:id" element={<MovieDetails />} />
-        <Route
-          path="/login"
-          element={<Login setToken={setToken} setIsAdmin={setIsAdmin} />}
-        />
+        <Route path="/login" element={<Login setToken={setToken} setIsAdmin={setIsAdmin} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route path="/cart" element={<Cart />} />
-        <Route
-          path="/admin"
-          element={<AdminPage token={token} isAdmin={isAdmin} />}
-        />
+        <Route path="/admin" element={<AdminPage token={token} isAdmin={isAdmin} />} />
+
       </Routes>
       <Footer token={token} setToken={setToken} />
     </>
