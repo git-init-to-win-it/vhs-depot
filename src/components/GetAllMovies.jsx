@@ -14,17 +14,22 @@ const GetAllMovies = () => {
   }
   return (
     <div className="poetsen-one-regular">
-      <h2>Movie List</h2>
+      <h2 className="movieListTitle">Movie List</h2>
       <ul className="movieListFlex">
         {movies.map(movie => (
-      <section className="homeMovieCard">
-            <div key={movie.id}>
-              <ul className="movieList">
-                <li>{movie.title}  </li>
-                <button onClick={() => handleClick(movie.id)}>More Info</button>
-              </ul>
-            </div>
-      </section>
+          <div className="homeMovieCard" key={movie.id} >
+            <p className ='movieList'>{movie.title}  </p>
+            <button className="moreInfoButton" onClick={() => handleClick(movie.id)}>more info</button>
+          </div>
+
+          // <section className="homeMovieCard">
+          //       <div>
+          //         <ul className="movieList">
+          //           <li >{movie.title}  </li>
+          //           <button onClick={() => handleClick(movie.id)}>More Info</button>
+          //         </ul>
+          //       </div>
+          // </section>
         ))}
       </ul>
     </div>

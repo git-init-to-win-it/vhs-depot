@@ -27,7 +27,7 @@ const AdminPage = ({ token, isAdmin }) => {
             </div>
           </div>
 
-          {showCreate && <CreateMovie />}
+          {showCreate && <CreateMovie token={token} />}
           {showUsersList && <UsersList token={token} />}
 
           <EditndDelete token={token} />

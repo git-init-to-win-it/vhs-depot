@@ -6,6 +6,10 @@ import GetAllMovies from "../components/GetAllMovies"
 const Home = ({ isAdmin }) => {
   return (
     <>
+    <div className="imgDiv">
+    <img className="logoImg" src="src/assets/mainlogo.png" alt="main logo"></img>
+
+    </div>
       {isAdmin ? (
         <> <section className="homePageCard">
           <button className="rampart-one-regular">
