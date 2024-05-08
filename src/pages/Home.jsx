@@ -8,7 +8,9 @@ const Home = ({ isAdmin }) => {
     <>
       {isAdmin ? (
         <> <section className="homePageCard">
-          <Link to="/admin">Admin View</Link>
+          <button className="rampart-one-regular">
+            <Link to="/admin">Admin View</Link>
+          </button>
           <div><GetAllMovies /></div>
         </section>
         </>

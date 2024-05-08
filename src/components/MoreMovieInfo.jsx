@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AddToCart from "./AddToCart";
-
+import "../styles/moremovieinfo.css"
 
 const MoreMovieInfo = () => {
   const token = localStorage.getItem(`token`);
@@ -23,7 +23,7 @@ const MoreMovieInfo = () => {
     fetchSingleMovie()
   }, []);
   return (
-    <>
+    <div className="poetsen-one-regular">
       {movieToDisplay.cartid ? (
           <h2>{movieToDisplay.title} is not available. The {movieToDisplay.genre} is living in another cart</h2>
         ) : (
@@ -40,7 +40,7 @@ const MoreMovieInfo = () => {
 
     <button onClick={() => navigate("/")}>Back to all VHS tapes</button>
 
-  </>
+  </div>
   
   );
 }

@@ -41,7 +41,7 @@ const Register = ({setToken}) => {
   
   return (
     <>
-    <section className="login">
+    <section className="login" id="poetsen-one-regular">
     <h1>Create an account or {<Link to="/login">log in</Link>}</h1>
     <form onSubmit={signUpHandler}> 
       <label>

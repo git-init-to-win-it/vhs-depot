@@ -8,7 +8,7 @@ import { MovieProvider } from "./MovieContext"
 ReactDOM.createRoot(document.getElementById("root")).render(
   <MovieProvider>
     <BrowserRouter>
-      <App />
+      <App/>
     </BrowserRouter>
   </MovieProvider>
 )
