@@ -33,7 +33,7 @@ const GetCartMovies = ({ token, success, setSuccess, remove, setRemove }) => {
      <h2>{movie.title}</h2>
      <h3 >{movie.genre}</h3>
      <p>{movie.description}</p>
-     <RemoveCartItem remove={remove} setRemove={setRemove} movieid={movie.id}/>
+     <RemoveCartItem remove={remove} setRemove={setRemove} movieid={movie.id} movietitle={movie.title}/>
      </div> 
     ))}
     </>

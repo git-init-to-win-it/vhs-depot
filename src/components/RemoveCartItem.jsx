@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 
-const RemoveCartItem = ({remove, setRemove, movieid}) => {
+const RemoveCartItem = ({remove, setRemove, movieid, movietitle}) => {
   const [error, setError] = useState(null);
  
   const handleRemoveFromCart = async () => {
@@ -31,7 +31,7 @@ const RemoveCartItem = ({remove, setRemove, movieid}) => {
   return (
     <>
       {error && <p>Error: {error}</p>}
-      {remove && <p>Item removed from cart!</p>}
+      {remove && <p>That other movie was removed from cart!</p>}
       <button onClick={handleRemoveFromCart}>
         Remove Item
       </button>
