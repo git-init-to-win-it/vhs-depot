@@ -4,11 +4,15 @@
   box-sizing: border-box;
 }
 
-.navbar-ul {
+.footer {
   display: flex;
   justify-content: space-around;
   padding: 20px;
   list-style: none;
   border: white solid;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.95);
+  position: fixed;
+  bottom: 0;
+  margin-top: 20px;
+  width: 100%;
 }
