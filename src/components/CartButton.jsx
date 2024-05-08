@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
     <button
     onClick={() => {<Link to="/cart"></Link>}}
     style={{ color: "black" }}
-  >
+    >
       Cart
     </button>
   );
