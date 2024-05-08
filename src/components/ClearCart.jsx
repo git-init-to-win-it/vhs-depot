@@ -25,6 +25,7 @@ const ClearCart = ({success, setSuccess}) => {
       }
       setLoading(false);
       setSuccess(true);
+      {success && <p>Checkout Successful!</p>}
     } catch (error) {
       setLoading(false);
       setError(error.message || 'An error occurred while clearing the cart.');
@@ -35,7 +36,6 @@ const ClearCart = ({success, setSuccess}) => {
     <>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {success && <p>Checkout Successful!</p>}
       <button onClick={handleClearCart} disabled={loading}>
         Checkout Cart!
       </button>
