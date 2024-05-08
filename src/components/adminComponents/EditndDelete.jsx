@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useContext } from "react"
 import { MovieContext } from "../../MovieContext"
+import staticGif from "../../assets/static.gif"
+import vhsGif from "../../assets/vhsGif.gif"
+import vhsGif2 from "../../assets/vhsGif2.gif"
+import "../../styles/editanddelete.css"
 
 const EditndDelete = ({ token }) => {
   const [editing, setEditing] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [gifArray, setGifArray] = useState([staticGif, vhsGif, vhsGif2])
   const [movieUpdateData, setMovieUpdateData] = useState({
     title: "",
     description: "",
@@ -79,65 +84,83 @@ const EditndDelete = ({ token }) => {
     }
   }
 
+  const getRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * gifArray.length)
+    return gifArray[randomIndex]
+  }
+
   if (!movies) {
     return <h2>Loading..</h2>
   }
 
   return (
-    <div>
-      <h1>Movies</h1>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            {editing === movie.id ? (
-              <div>
-                <input
-                  type="text"
-                  value={movieUpdateData.title}
-                  onChange={e =>
-                    setMovieUpdateData(prevState => ({
-                      ...prevState,
-                      title: e.target.value,
-                    }))
-                  }
-                />
-                <input
-                  type="text"
-                  value={movieUpdateData.description}
-                  onChange={e =>
-                    setMovieUpdateData(prevState => ({
-                      ...prevState,
-                      description: e.target.value,
-                    }))
-                  }
-                />
-                <input
-                  type="text"
-                  value={movieUpdateData.genre}
-                  onChange={e =>
-                    setMovieUpdateData(prevState => ({
-                      ...prevState,
-                      genre: e.target.value,
-                    }))
-                  }
-                />
-                <button onClick={() => handleEdit(movie.id)}>Close</button>
-                <button onClick={() => handleUpdate(movie.id, movieUpdateData)}>
-                  Save Changes
-                </button>
-              </div>
-            ) : (
-              <div>
-                <h2>{movie.title}</h2>
-                <h4>{movie.description}</h4>
-                <p>{movie.genre}</p>
-                <button onClick={() => handleEdit(movie.id)}>Edit</button>
-                <button onClick={() => handleDelete(movie.id)}>Delete</button>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+    <div className="movie-list-container">
+      <div className="movie-list-wrapper">
+        <div>
+          <h1>Movie List</h1>
+        </div>
+        <ul className="ul">
+          {movies.map(movie => (
+            <li key={movie.id} className="movie-card">
+              {editing === movie.id ? (
+                <div>
+                  <input
+                    type="text"
+                    value={movieUpdateData.title}
+                    onChange={e =>
+                      setMovieUpdateData(prevState => ({
+                        ...prevState,
+                        title: e.target.value,
+                      }))
+                    }
+                  />
+                  <input
+                    type="text"
+                    value={movieUpdateData.description}
+                    onChange={e =>
+                      setMovieUpdateData(prevState => ({
+                        ...prevState,
+                        description: e.target.value,
+                      }))
+                    }
+                  />
+                  <input
+                    type="text"
+                    value={movieUpdateData.genre}
+                    onChange={e =>
+                      setMovieUpdateData(prevState => ({
+                        ...prevState,
+                        genre: e.target.value,
+                      }))
+                    }
+                  />
+                  <button onClick={() => handleEdit(movie.id)}>Close</button>
+                  <button
+                    onClick={() => handleUpdate(movie.id, movieUpdateData)}
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              ) : (
+                <div className="movie-card">
+                  <div className="movie-card-info">
+                    <h2>{movie.title}</h2>
+                    <h4>{movie.description}</h4>
+                    <p>{movie.genre}</p>
+                    <button onClick={() => handleEdit(movie.id)}>Edit</button>
+                    <button onClick={() => handleDelete(movie.id)}>
+                      Delete
+                    </button>
+                  </div>
+                  <div className="movie-card-img">
+                    <img src={getRandomImage()} alt="Image Here" />
+                  </div>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

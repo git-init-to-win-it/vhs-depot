@@ -34,7 +34,9 @@ const CreateMovie = ({ token }) => {
   return (
     <div className="card-container">
       <div className="card-wrapper">
-        <h1>Create Movie</h1>
+        <div>
+          <h1>Create Movie</h1>
+        </div>
         <form onSubmit={handleSubmit}>
           <input
             placeholder="Title"
