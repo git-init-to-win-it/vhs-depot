@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  list-style: none;
+  border: white solid;
+  background-color: rgba(0, 0, 0, 0.95);
+  position: fixed;
+  bottom: 0;
+  margin-top: 20px;
+  width: 100%;
+}

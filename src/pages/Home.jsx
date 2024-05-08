@@ -1,18 +1,21 @@
 import React from "react"
 import { Link } from "react-router-dom"
-
+import "../styles/home.css"
 import GetAllMovies from "../components/GetAllMovies"
 
 const Home = ({ isAdmin }) => {
   return (
     <>
       {isAdmin ? (
-        <>
-        <Link to="/admin">Admin View</Link>
-        <div><GetAllMovies /></div>
+        <> <section className="homePageCard">
+          <Link to="/admin">Admin View</Link>
+          <div><GetAllMovies /></div>
+        </section>
         </>
-        ) : (
-        <div><GetAllMovies /></div>)
+      ) : (
+        <section className="homePageCard">
+          <div><GetAllMovies /></div>
+        </section>)
       }
     </>
   )

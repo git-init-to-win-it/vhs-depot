@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.users-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.users-wrapper {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  width: 80rem;
+  border: 1px solid red;
+}
+
+.users-wrapper h1 {
+  color: red; /* Text color */
+  padding-bottom: 10px;
+}
+
+.users-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-wrapper th,
+.users-wrapper td {
+  padding: 8px;
+  border-bottom: 1px dashed #ddd;
+}
+
+.users-wrapper,
+td {
+  font-size: 15px;
+  font-weight: bold;
+  color: red;
+}
+
+.users-wrapper th {
+  background-color: red;
+  color: black;
+}
