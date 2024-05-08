@@ -8,7 +8,6 @@ const AddToCart = () => {
  
   const handleAddToCart = async () => {
     const token = localStorage.getItem('token');
-    console.log(token);
     if (!token) {
       setError('Please try logging in, not sure how you got this button');
       return;

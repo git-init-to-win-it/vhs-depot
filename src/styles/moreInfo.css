@@ -97,7 +97,8 @@ p {
   display: flexbox;
   justify-content: center;
   flex-direction: row;
-  width: 800pt;
+  width: 600pt;
+  height: 100em;
   gap: 5px;
   margin: auto;
   margin-top: 2em;
