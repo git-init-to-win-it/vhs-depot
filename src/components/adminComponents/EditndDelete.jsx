@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext } from "react"
 import { MovieContext } from "../../MovieContext"
+import staticGif from "../../assets/static.gif"
+import vhsGif from "../../assets/vhsGif.gif"
+import vhsGif2 from "../../assets/vhsGif2.gif"
 import "../../styles/editanddelete.css"
 
 const EditndDelete = ({ token }) => {
   const [editing, setEditing] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [gifArray, setGifArray] = useState([staticGif, vhsGif, vhsGif2])
   const [movieUpdateData, setMovieUpdateData] = useState({
     title: "",
     description: "",
@@ -80,6 +84,11 @@ const EditndDelete = ({ token }) => {
     }
   }
 
+  const getRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * gifArray.length)
+    return gifArray[randomIndex]
+  }
+
   if (!movies) {
     return <h2>Loading..</h2>
   }
@@ -90,7 +99,7 @@ const EditndDelete = ({ token }) => {
         <div>
           <h1>Movie List</h1>
         </div>
-        <ul>
+        <ul className="ul">
           {movies.map(movie => (
             <li key={movie.id} className="movie-card">
               {editing === movie.id ? (
@@ -134,11 +143,18 @@ const EditndDelete = ({ token }) => {
                 </div>
               ) : (
                 <div className="movie-card">
-                  <h2>{movie.title}</h2>
-                  <h4>{movie.description}</h4>
-                  <p>{movie.genre}</p>
-                  <button onClick={() => handleEdit(movie.id)}>Edit</button>
-                  <button onClick={() => handleDelete(movie.id)}>Delete</button>
+                  <div className="movie-card-info">
+                    <h2>{movie.title}</h2>
+                    <h4>{movie.description}</h4>
+                    <p>{movie.genre}</p>
+                    <button onClick={() => handleEdit(movie.id)}>Edit</button>
+                    <button onClick={() => handleDelete(movie.id)}>
+                      Delete
+                    </button>
+                  </div>
+                  <div className="movie-card-img">
+                    <img src={getRandomImage()} alt="Image Here" />
+                  </div>
                 </div>
               )}
             </li>
