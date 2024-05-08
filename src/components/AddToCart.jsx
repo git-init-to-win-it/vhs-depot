@@ -35,7 +35,7 @@ const AddToCart = () => {
     <>
       {error && <p>Error: {error}</p>}
       {success && <p>Item added to cart!</p>}
-      <button onClick={handleAddToCart}>
+      <button className='cartButton' onClick={handleAddToCart}>
         Add To Cart
       </button>
     </>
