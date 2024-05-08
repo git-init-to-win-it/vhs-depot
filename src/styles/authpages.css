@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: fit-content;
+  gap: 5px;
+  margin: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: solid;
+  border-radius: 10pt;
+  border-color: antiquewhite;
+  color: red;
+}
+
+.registerButton{
+  margin-left: 10pt;
+}
+
+input{
+  margin-left: 10pt;
+}
+
+.inputPassword{
+  margin-left: 13.7pt;
+}
+
+.loginButton{
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+}
+
+.loginButton > input{
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+}
+
+.cartMovieCard{
+  border: solid;
+  border-color: antiquewhite;
+  border-radius: 30pt;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: rgba(75, 4, 97, 0.8);
+}
+
+.cartMovieCard > button{
+  margin-top: 1em;
+}
