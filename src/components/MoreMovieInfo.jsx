@@ -44,18 +44,12 @@ const MoreMovieInfo = () => {
         </div>
         {token ? (<AddToCart />) : <div class="loginMessageParent"><p className="loginMessageCard">login to add VHS to cart</p></div>}
         <div className="buttonParent">
-        <button className='backToVhsButton' onClick={() => navigate("/")}>Back to all VHS tapes</button>
-      </div>
+          <button className='backToVhsButton' onClick={() => navigate("/")}>Back to all VHS tapes</button>
+        </div>
         </div>
       )}
-    </>
-
-
     <button onClick={() => navigate("/")}>Back to all VHS tapes</button>
-
   </div>
-  
-
   );
 }
 
