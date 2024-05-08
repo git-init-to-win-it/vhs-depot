@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RemoveCartItem from "./RemoveCartItem";
 
-const GetCartMovies = ({ token, success, setSuccess }) => {
+const GetCartMovies = ({ token, success, setSuccess, remove, setRemove }) => {
   const [cartMovies, setCartMovies] = useState([]);
   token = localStorage.getItem(`token`);
   useEffect(() => {
@@ -24,7 +24,7 @@ const GetCartMovies = ({ token, success, setSuccess }) => {
       }
     }
     fetchCartMovies();
-  }, [success]);
+  }, [success, remove]);
   
   return (
     <>
@@ -33,7 +33,7 @@ const GetCartMovies = ({ token, success, setSuccess }) => {
      <h2>{movie.title}</h2>
      <h3 >{movie.genre}</h3>
      <p>{movie.description}</p>
-     <RemoveCartItem success={success} setSuccess={setSuccess} movieid={movie.id}/>
+     <RemoveCartItem remove={remove} setRemove={setRemove} movieid={movie.id}/>
      </div> 
     ))}
     </>

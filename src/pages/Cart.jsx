@@ -5,10 +5,11 @@ import "../styles/cart.css"
 
 const Cart = () => {
   const [success, setSuccess] = useState(false);
+  const [remove, setRemove] = useState(false);
 
   return (
     <> <section className="cartCard" id="poetsen-one-regular">
-      <GetCartMovies success={success} setSuccess={setSuccess} />
+      <GetCartMovies success={success} setSuccess={setSuccess} remove={remove} setRemove={setRemove}/>
       <ClearCart success={success} setSuccess={setSuccess} />
       </section>
     </>
