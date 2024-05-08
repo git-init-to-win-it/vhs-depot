@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.homePageCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  width: 800pt;
+  gap: 5px;
+  margin: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: solid;
+  border-radius: 10pt;
+  border-color: antiquewhite;
+  color: red;
+  text-align: center;
+}
+
+.homeMovieCard{
+  border: solid;
+  border-color: antiquewhite;
+  border-radius: 30pt;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: rgba(75, 4, 97, 0.8);
+}
+
+.movieList{
+  list-style: none;
+}
+
+.movieList > li{
+  font-size: xx-large;
+  font-weight: bolder;
+  margin-bottom: 10pt;
+}
+
+.movieListFlex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: fit-content;
+}
+
+.movieListFlex > * {
+  width: calc(33.33% - 10px);
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.cartMovieCard > button{
+  margin-top: 1em;
+}
