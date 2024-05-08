@@ -5,7 +5,7 @@ import "../styles/footer.css"
 const Footer = ({token, setToken}) => {
   return (
     <>
-      <section className="footer">
+      <section className="footer" id="rampart-one-regular">
       <BackToTopButton />
       </section>
     </>

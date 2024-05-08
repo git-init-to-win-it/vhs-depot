@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.cartCard {
+.login {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -21,6 +21,34 @@
   color: red;
 }
 
+.registerButton{
+  margin-left: 10pt;
+}
+
+input{
+  margin-left: 10pt;
+}
+
+.inputPassword{
+  margin-left: 13.7pt;
+}
+
+.loginButton{
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+}
+
+.loginButton > input{
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+}
+
 .cartMovieCard{
   border: solid;
   border-color: antiquewhite;
@@ -33,10 +61,4 @@
 
 .cartMovieCard > button{
   margin-top: 1em;
-}
-
-#poetsen-one-regular {
-  font-family: "Poetsen One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }

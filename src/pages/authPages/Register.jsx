@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import "../../styles/authpages.css"
+
 
 const Register = ({setToken}) => {
   const [username, setUsernameInput] = useState("");
@@ -39,6 +41,7 @@ const Register = ({setToken}) => {
   
   return (
     <>
+    <section className="login" id="poetsen-one-regular">
     <h1>Create an account or {<Link to="/login">log in</Link>}</h1>
     <form onSubmit={signUpHandler}> 
       <label>
@@ -48,14 +51,16 @@ const Register = ({setToken}) => {
         value={username}
         onChange={(e) => setUsernameInput(e.target.value)}/>
       </label>
-
+      <br />
       <label>
         Password:
         <input required 
         type={showPassword ? "text" : "password" }
         value={password}
-        onChange={(e) => setPasswordInput(e.target.value)}/>
+        onChange={(e) => setPasswordInput(e.target.value)}
+        className="inputPassword"/>
       </label>
+      <br />
       <label>Show Password</label>
         <input 
           id="check"
@@ -65,9 +70,11 @@ const Register = ({setToken}) => {
             setShowPassword((prev) => !prev)
           }}
         />
+        <br />
         {error && <div>Username exists, please try again or {<Link to="/login">log in</Link>}.</div>}
-      <button>Sign Up!</button>
+      <button className="loginButton">Sign Up!</button>
     </form>
+    </section>
     </>
   )
 }

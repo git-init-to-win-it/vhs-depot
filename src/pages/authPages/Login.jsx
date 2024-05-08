@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../../styles/authpages.css"
 
 const Login = ({ setToken, setIsAdmin }) => {
   const [username, setUsername] = useState("");
@@ -43,6 +44,7 @@ const Login = ({ setToken, setIsAdmin }) => {
 
   return (
     <>
+    <section className="login" id="poetsen-one-regular">
       <h3>LOGIN</h3>
       <form onSubmit={submitHandler}>
         <label>
@@ -52,20 +54,27 @@ const Login = ({ setToken, setIsAdmin }) => {
             value={username}
             onChange={(e) => { setUsername(e.target.value) }} />
         </label>
+        <br />
         <label>
           Password:
           <input
             type="password"
             value={password}
-            onChange={(e) => { setPassword(e.target.value) }} />
+            onChange={(e) => { setPassword(e.target.value) }}
+            className="inputPassword" />
         </label>
+        <br />
+        <button className="loginButton">
         <input type="submit" value="Log in" />
+        </button>
       </form>
       <label>
         Don't have an account?
+        <button className="registerButton">
         <Link to="/register">Sign up</Link>
+        </button>
       </label>
-
+      </section>
     </>
   )
 }
