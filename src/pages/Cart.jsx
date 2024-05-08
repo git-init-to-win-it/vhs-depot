@@ -7,7 +7,7 @@ const Cart = () => {
   const [success, setSuccess] = useState(false);
 
   return (
-    <> <section className="cartCard">
+    <> <section className="cartCard" id="poetsen-one-regular">
       <GetCartMovies success={success} setSuccess={setSuccess} />
       <ClearCart success={success} setSuccess={setSuccess} />
       </section>

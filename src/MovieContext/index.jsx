@@ -8,14 +8,14 @@ const MovieProvider = ({ children }) => {
   useEffect(() => {
     const getMovies = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/movie")
-        const moviesObject = await response.json()
-        setMovies(moviesObject)
+        const response = await fetch("/api/movie");
+        const moviesObject = await response.json();
+        setMovies(moviesObject);
       } catch (error) {
-        console.error("Error fetching movies:", error)
+        console.error("Error fetching movies:", error);
       }
     }
-    getMovies()
+    getMovies();
   }, [setMovies])
 
   return (
