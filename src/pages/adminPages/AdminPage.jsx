@@ -25,7 +25,7 @@ const AdminPage = ({ token, isAdmin }) => {
           <button onClick={handleShowUsers}>Show Users</button>
           {showUsersList && <UsersList token={token} />}
 
-          <EditndDelete />
+          <EditndDelete token={token} />
         </div>
       ) : (
         <p>Loading...</p>
