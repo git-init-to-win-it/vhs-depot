@@ -59,6 +59,7 @@ const EditndDelete = ({ token }) => {
 
   const handleDelete = async movieId => {
     console.log("movieId to be deleted", movieId)
+    console.log(token)
     try {
       const response = await fetch(
         `http://localhost:3000/api/movie/${movieId}`,
