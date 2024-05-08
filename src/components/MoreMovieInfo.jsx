@@ -30,6 +30,7 @@ const MoreMovieInfo = () => {
         <div className="imgParent">
         <img className='vhsGif'src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWJoc3kxMjhydG9nbTB4bG9yd3VvenN3Z2txZDJ1YWZ1OHpnNnQ3eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l44QvKoQuUD3xPZKg/giphy.gif"></img>
         </div>
+        <button className='backToVhsButton' onClick={() => navigate("/")}>Back to all VHS tapes</button>
         </h2>
         </>
      
@@ -48,7 +49,6 @@ const MoreMovieInfo = () => {
         </div>
         </div>
       )}
-    <button onClick={() => navigate("/")}>Back to all VHS tapes</button>
   </div>
   );
 }
