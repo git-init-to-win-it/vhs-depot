@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
   const CartButton = () => {
     return (
-    <button
+    <button className='cartButton'
       onClick={() => {<Link to="/cart"></Link>}}
     >
       Cart
