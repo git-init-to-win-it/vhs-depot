@@ -3,6 +3,7 @@ import MovieManager from "../../components/adminComponents/CreateMovie"
 import CreateMovie from "../../components/adminComponents/CreateMovie"
 import EditndDelete from "../../components/adminComponents/EditndDelete"
 import UsersList from "../../components/adminComponents/UsersList"
+import "../../styles/adminpage.css"
 
 const AdminPage = ({ token, isAdmin }) => {
   const [showCreate, setShowCreate] = useState(false)
@@ -16,13 +17,17 @@ const AdminPage = ({ token, isAdmin }) => {
   }
 
   return (
-    <div>
+    <div className="container">
       {isAdmin ? (
-        <div>
-          <button onClick={handleShowCreate}>Create Movie</button>
-          {showCreate && <CreateMovie />}
+        <div className="wrapper">
+          <div className="button-container">
+            <div className="button-wrapper">
+              <button onClick={handleShowCreate}>Create Movie</button>
+              <button onClick={handleShowUsers}>Show Users</button>
+            </div>
+          </div>
 
-          <button onClick={handleShowUsers}>Show Users</button>
+          {showCreate && <CreateMovie />}
           {showUsersList && <UsersList token={token} />}
 
           <EditndDelete />

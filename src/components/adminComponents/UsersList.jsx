@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import "../../styles/userslist.css"
 
 const UsersList = ({ token }) => {
   const [users, setUsers] = useState([])
@@ -32,15 +33,26 @@ const UsersList = ({ token }) => {
   }
 
   return (
-    <div>
-      <h1>Users List</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            {user.username} - {user.role}
-          </li>
-        ))}
-      </ul>
+    <div className="users-container">
+      <div className="users-wrapper">
+        <h1>Users List</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map(user => (
+              <tr key={user.id}>
+                <td>{user.username}</td>
+                <td>{user.role}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

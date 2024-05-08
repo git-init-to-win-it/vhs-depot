@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { MovieContext } from "../../MovieContext"
+import "../../styles/editanddelete.css"
 
 const EditndDelete = ({ token }) => {
   const [editing, setEditing] = useState(null)
@@ -84,60 +85,66 @@ const EditndDelete = ({ token }) => {
   }
 
   return (
-    <div>
-      <h1>Movies</h1>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            {editing === movie.id ? (
-              <div>
-                <input
-                  type="text"
-                  value={movieUpdateData.title}
-                  onChange={e =>
-                    setMovieUpdateData(prevState => ({
-                      ...prevState,
-                      title: e.target.value,
-                    }))
-                  }
-                />
-                <input
-                  type="text"
-                  value={movieUpdateData.description}
-                  onChange={e =>
-                    setMovieUpdateData(prevState => ({
-                      ...prevState,
-                      description: e.target.value,
-                    }))
-                  }
-                />
-                <input
-                  type="text"
-                  value={movieUpdateData.genre}
-                  onChange={e =>
-                    setMovieUpdateData(prevState => ({
-                      ...prevState,
-                      genre: e.target.value,
-                    }))
-                  }
-                />
-                <button onClick={() => handleEdit(movie.id)}>Close</button>
-                <button onClick={() => handleUpdate(movie.id, movieUpdateData)}>
-                  Save Changes
-                </button>
-              </div>
-            ) : (
-              <div>
-                <h2>{movie.title}</h2>
-                <h4>{movie.description}</h4>
-                <p>{movie.genre}</p>
-                <button onClick={() => handleEdit(movie.id)}>Edit</button>
-                <button onClick={() => handleDelete(movie.id)}>Delete</button>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+    <div className="movie-list-container">
+      <div className="movie-list-wrapper">
+        <div>
+          <h1>Movie List</h1>
+        </div>
+        <ul>
+          {movies.map(movie => (
+            <li key={movie.id} className="movie-card">
+              {editing === movie.id ? (
+                <div>
+                  <input
+                    type="text"
+                    value={movieUpdateData.title}
+                    onChange={e =>
+                      setMovieUpdateData(prevState => ({
+                        ...prevState,
+                        title: e.target.value,
+                      }))
+                    }
+                  />
+                  <input
+                    type="text"
+                    value={movieUpdateData.description}
+                    onChange={e =>
+                      setMovieUpdateData(prevState => ({
+                        ...prevState,
+                        description: e.target.value,
+                      }))
+                    }
+                  />
+                  <input
+                    type="text"
+                    value={movieUpdateData.genre}
+                    onChange={e =>
+                      setMovieUpdateData(prevState => ({
+                        ...prevState,
+                        genre: e.target.value,
+                      }))
+                    }
+                  />
+                  <button onClick={() => handleEdit(movie.id)}>Close</button>
+                  <button
+                    onClick={() => handleUpdate(movie.id, movieUpdateData)}
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              ) : (
+                <div className="movie-card">
+                  <h2>{movie.title}</h2>
+                  <h4>{movie.description}</h4>
+                  <p>{movie.genre}</p>
+                  <button onClick={() => handleEdit(movie.id)}>Edit</button>
+                  <button onClick={() => handleDelete(movie.id)}>Delete</button>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
